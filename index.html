@@ -1,0 +1,148 @@
+<html style="">
+<head>
+	<meta charset="UTF-8">
+	<title>GIC for NHPP</title>
+	<!--<link rel="shortcut icon" href="https://simulation.wujingchi.com/limit/img/you.ico" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+-->
+	<!-- 载入layui CSS -->
+	<link rel="stylesheet" href="https://simulation.wujingchi.com/limit/core/layui/css/layui.css"  media="all">
+	<link rel="stylesheet" href="https://simulation.wujingchi.com/limit/css/waveletShrinkageEstimationTool.css"  media="all">
+</head>
+
+<body id="body" style="position:relative;">
+	<ul class="layui-nav" lay-filter="">
+		
+		<li class="layui-nav-item"><a href="https://wsrat.wujingchi.com">W-SRAT</a></li>
+		<li class="layui-nav-item"><a href="https://daubewet.wujingchi.com">Daubechies-WET</a></li>
+		<li class="layui-nav-item"><a href="https://gic.wujingchi.com">GIC for NHPP</a></li>
+		<li class="layui-nav-item layui-this"><a href="https://simulation.wujingchi.com">NHPP Simulation Tool</a></li>
+		
+	</ul>
+
+
+	<!-- 登录页 -->
+	<div class="login_shade_div">
+		<!-- 登录内容 -->
+		<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+			<div class="layadmin-user-login-main">
+				<div class="layadmin-user-login-box layadmin-user-login-header">
+					
+					<h2 style="font-size: 25px;">NHPP Simulation Tool</h2>
+					<!--<p>Author：Wu JingChi</p>-->
+				</div>
+				<div class="layadmin-user-login-box layadmin-user-login-body layui-form" lay-filter="formTest">
+					
+
+					<!--
+					<div class="layui-form-item">
+						<div class="layui-form-item">
+							<label class="layui-form-label">Data Type :</label>
+							<div class="layui-input-block">
+								<input type="radio" lay-filter="dataType" name="dataType" value="time" title="Time-domain Data" checked/>
+								<input type="radio" lay-filter="dataType" name="dataType" value="group" title="Grouped Data"/>
+							</div>
+						</div>
+					</div>
+					-->
+
+					
+
+
+					<div class="layui-form-item">
+						<label class="layui-form-label">Simulation Method :</label>
+						<div class="layui-input-block">
+							<input type="radio" name="simMethod" value="Thinning" title="Thinning Algorithm" checked/>
+						</div>
+					</div>
+
+					<div class="layui-form-item confirm-item">
+						<label class="layui-form-label confirm_label_right">Truncated Time :</label>
+						<div id="termInput" class="layui-input-inline">
+							<input lay-verify="required|number" id="truncTime" type="text" name="truncTime" required placeholder="" autocomplete="off" class="layui-input prediction-input">
+						</div>
+					</div>
+
+					<!--
+					<div class="layui-form-item confirm-item">
+						<label class="layui-form-label confirm_label_right">Simualtion Sum :</label>
+						<div id="termInput" class="layui-input-inline">
+							<input lay-verify="required|number" id="totalSum" type="text" name="totalSum" required placeholder="" autocomplete="off" class="layui-input prediction-input">
+						</div>
+					</div>
+					-->
+
+					<div class="layui-form-item">
+						<label class="layui-form-label">Model Name :</label>
+						<div class="layui-input-block">
+							<input lay-filter="Exp" type="radio" name="modelName" value="Exp" title="Exp" checked/>
+							<input lay-filter="NonExp" type="radio" name="modelName" value="Gamma" title="Gamma"/>
+							<input lay-filter="NonExp" type="radio" name="modelName" value="Pareto" title="Pareto"/>
+							<input lay-filter="NonExp" type="radio" name="modelName" value="TruncNormal" title="TruncNormal"/>
+							<input lay-filter="NonExp" type="radio" name="modelName" value="TruncLogist" title="TruncLogist"/>
+							<input lay-filter="NonExp" type="radio" name="modelName" value="LogLogist" title="LogLogist"/>
+							<input lay-filter="NonExp" type="radio" name="modelName" value="TruncEVMax" title="TruncEVMax"/>
+							<input lay-filter="NonExp" type="radio" name="modelName" value="LogEVMax" title="LogEVMax"/>
+							<input lay-filter="NonExp" type="radio" name="modelName" value="TruncEVMin" title="TruncEVMin"/>
+							<input lay-filter="NonExp" type="radio" name="modelName" value="LogEVMin" title="LogEVMin"/>
+						</div>
+					</div>
+
+					<div class="layui-form-item confirm-item">
+						<label class="layui-form-label confirm_label_right">Parameter a :</label>
+						<div id="termInput" class="layui-input-inline">
+							<input lay-verify="required|number" id="Parameter_a" type="text" name="Parameter_a" required placeholder="" autocomplete="off" class="layui-input prediction-input">
+						</div>
+					</div>
+
+					<div class="layui-form-item confirm-item">
+						<label class="layui-form-label confirm_label_right">Parameter b :</label>
+						<div id="termInput" class="layui-input-inline">
+							<input lay-verify="required|number" id="Parameter_b" type="text" name="Parameter_b" required placeholder="" autocomplete="off" class="layui-input prediction-input">
+						</div>
+					</div>
+
+					
+					<div class="layui-form-item confirm-item" id="Parameter_c_div">
+						<label class="layui-form-label confirm_label_right">Parameter c :</label>
+						<div id="termInput" class="layui-input-inline">
+							<input lay-verify="" id="Parameter_c" type="text" name="Parameter_c" placeholder="" autocomplete="off" class="layui-input prediction-input">
+						</div>
+					</div>
+					
+
+					<div class="layui-form-item">
+						<div class="layui-input-block" id="res" style="margin-left: 155px;">
+						<button id="Estimate" class="layui-btn" lay-submit lay-filter="Estimate" >Simulate</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<!-- 载入layui JS -->
+<script src="https://simulation.wujingchi.com/limit/core/layui/layui.js"></script>
+<!-- 载入jquery -->
+<script src="https://simulation.wujingchi.com/jquery/2.1.4/jquery.min.js"></script>
+<!-- 载入jquery cookie -->
+<script src="https://simulation.wujingchi.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<!-- 载入md5插件 -->
+<script src="https://simulation.wujingchi.com/limit/core/md5.js"></script>
+<!-- 载入LimitControl控制模块 -->
+<script src="https://simulation.wujingchi.com/limit/core/LimitControl.js"></script>
+<!-- 载入页面脚本 -->
+<script src="https://simulation.wujingchi.com/limit/js/waveletShrinkageEstimationTool.js"></script>
+<!-- 模块组入口 -->
+<script>
+	//载入layer模块
+	layui.use('layer', function(){});
+    layui.use('element', function(){});
+	//设置网站域名
+	LimitControl.setHostName("https://simulation.wujingchi.com/index.php/");
+	//设置Limit框架目录路径
+	LimitControl.setStaticHost("https://simulation.wujingchi.com/");
+</script>
+</html>
